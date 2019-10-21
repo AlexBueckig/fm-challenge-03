@@ -1,0 +1,135 @@
+.header {
+  position: absolute;
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1em;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    list-style: none;
+    padding: 1em;
+    position: absolute;
+    top: 6em;
+    left: 50%;
+    transform: translate(-50%, -400px);
+    width: 70%;
+    border-radius: 3px;
+    box-shadow: 0px 5px 10px rgba(black, 0.3);
+    transition: transform 500ms ease-in-out;
+
+    &.open {
+      transform: translate(-50%, 0);
+    }
+  }
+
+  &__item {
+    text-align: center;
+    margin: 0.75em 0;
+  }
+
+  &__item--light {
+    .nav__link {
+      color: map-get($map: $colors-neutral, $key: grayish-blue);
+    }
+  }
+
+  &__item--light::before {
+    display: block;
+    content: '';
+    height: 1px;
+    width: 100%;
+    opacity: 0.3;
+    background: map-get($map: $colors-neutral, $key: grayish-blue);
+    margin-bottom: 1.5em;
+  }
+
+  &__link {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    color: map-get($map: $colors-neutral, $key: very-dark-blue);
+    letter-spacing: 1px;
+  }
+
+  &__link:hover,
+  &__link:focus {
+    text-decoration: underline;
+  }
+
+  &__button {
+    display: inline-block;
+    height: 32px;
+    background: transparent;
+    border: 0;
+    position: relative;
+    cursor: pointer;
+    padding: 0.5em;
+    outline: 0;
+  }
+}
+
+@include for-tablet-landscape-up {
+  .header {
+    top: 40px;
+  }
+
+  .nav {
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 4em;
+
+    &__list {
+      position: initial;
+      transform: translate(0);
+      flex-direction: row;
+      justify-content: flex-end;
+      box-shadow: none;
+      background: transparent;
+      transition: none;
+
+      &.open {
+        transform: translate(0);
+      }
+    }
+
+    &__item {
+      margin: 0;
+      margin-left: 3em;
+    }
+
+    &__item--light {
+      display: flex;
+    }
+
+    &__item--light::before {
+      content: '●';
+      border: 0;
+      background: transparent;
+      width: initial;
+      margin-right: 3em;
+    }
+
+    &__button {
+      display: none;
+    }
+  }
+}
+
+@include for-desktop-up {
+  .nav {
+    margin: 0 8em;
+  }
+}
+
+@include for-big-desktop-up {
+  .nav {
+    margin: 0 10em;
+  }
+}
